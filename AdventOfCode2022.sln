@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32929.385
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdventOfCode2022", "AdventOfCode2022\AdventOfCode2022.csproj", "{DA3800EA-7D93-4208-9483-593E7EAF0B9B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{78537FBD-44D2-47C5-A95C-F7DFDAD23386}"
+	ProjectSection(SolutionItems) = preProject
+		watch.ps1 = watch.ps1
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DA3800EA-7D93-4208-9483-593E7EAF0B9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA3800EA-7D93-4208-9483-593E7EAF0B9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA3800EA-7D93-4208-9483-593E7EAF0B9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA3800EA-7D93-4208-9483-593E7EAF0B9B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {008BE734-829E-4291-9D94-7A8B444AEAAD}
+	EndGlobalSection
+EndGlobal
