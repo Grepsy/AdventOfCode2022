@@ -238,32 +238,3 @@ _Pvt_Extensions
 
 # Rider .idea filder
 .idea/
-
-wwwroot/dist
-wwwroot/lib
-wwwroot/css/site.min.css
-wwwroot/js/site.min.js
-/TheSustainables.AdviceService.WebApi/logs
-
-# Reports of the benchmark tool
-/TheSustainables.AdviceService.Benchmarking/SuperBenchmark/reports*
-
-# Local configuration file
-appsettings.Local.json
-appsettings.Rick.json
-appsettings.Robert.json
-appsettings.Robson.json
-appsettings.stath.json
-
-/management/sqlpackage*
-/management/*.bacpac
-/TheSustainables.AdviceService.Benchmarking/AdviceBenchmarks/BenchmarkDotNet.Artifacts
-/TheSustainables.AdviceService.Benchmarking/SuperBenchmark/reports
-/TheSustainables.AdviceService.WebApi/appsettings.Development.json
-
-/TheSustainables.AdviceService.ConsoleApp1/**
-/asia_output
-/docker/impact-analysis/AS_requests_220228_hqg.csv
-/docker/mssql/ts-adviceservice-test.bacpac
-/.vscode/tasks.json
-/.vscode/launch.json
