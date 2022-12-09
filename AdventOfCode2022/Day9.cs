@@ -19,8 +19,8 @@ public static class Day9 {
         foreach (var step in steps) {
             head += step;
             tail += (head - tail) switch {
-                (0, var y) when Math.Abs(y) == 2 => new V(0, Math.Sign(y)),
-                (var x, 0) when Math.Abs(x) == 2 => new V(Math.Sign(x), 0),
+                (0, var y) { Length: 2 } => new V(0, Math.Sign(y)),
+                (var x, 0) { Length: 2 } => new V(Math.Sign(x), 0),
                 (var x, var y) { Length: > 2 } => new V(Math.Sign(x), Math.Sign(y)),
                 _ => V.Zero
             };
@@ -49,8 +49,8 @@ public static class Day9 {
             knots[0] += step;
             for (var i = 1; i < knots.Length; i++) {
                 knots[i] += (knots[i - 1] - knots[i]) switch {
-                    (0, var y) when Math.Abs(y) == 2 => new V(0, Math.Sign(y)),
-                    (var x, 0) when Math.Abs(x) == 2 => new V(Math.Sign(x), 0),
+                    (0, var y) { Length: 2 } => new V(0, Math.Sign(y)),
+                    (var x, 0) { Length: 2 } => new V(Math.Sign(x), 0),
                     (var x, var y) { Length: > 2 } => new V(Math.Sign(x), Math.Sign(y)),
                     _ => V.Zero
                 };
