@@ -1,7 +1,9 @@
 ﻿namespace AdventOfCode2022;
 
 public static class Day9 {
-    public static object Run1() { //
+    public static object Run1() => Run2(size: 2); //6236
+        
+    public static object Run2(int size = 10) { // 2449
         var steps =
             from line in File.ReadLines("day9.txt").Select(x => x.Split(' '))
             let direction = line[0] switch {
@@ -13,36 +15,7 @@ public static class Day9 {
             from step in Enumerable.Repeat(direction, int.Parse(line[1]))
             select step;
 
-        V head = V.Zero, tail = V.Zero;
-        var visits = new HashSet<V>();
-
-        foreach (var step in steps) {
-            head += step;
-            tail += (head - tail) switch {
-                (0, var y) { Length: 2 } => new V(0, Math.Sign(y)),
-                (var x, 0) { Length: 2 } => new V(Math.Sign(x), 0),
-                (var x, var y) { Length: > 2 } => new V(Math.Sign(x), Math.Sign(y)),
-                _ => V.Zero
-            };
-            visits.Add(tail);
-        }
-
-        return visits.Count;
-    }
-
-    public static object Run2() { // 
-        var steps =
-            from line in File.ReadLines("day9.txt").Select(x => x.Split(' '))
-            let direction = line[0] switch {
-                "U" => new V(0, 1),
-                "D" => new V(0, -1),
-                "L" => new V(-1, 0),
-                "R" => new V(1, 0)
-            }
-            from step in Enumerable.Repeat(direction, int.Parse(line[1]))
-            select step;
-
-        var knots = Enumerable.Repeat(V.Zero, 10).ToArray();
+        var knots = Enumerable.Repeat(V.Zero, size).ToArray();
         var visits = new HashSet<V>();
 
         foreach (var step in steps) {
@@ -55,20 +28,10 @@ public static class Day9 {
                     _ => V.Zero
                 };
             }
-            visits.Add(knots[9]);
+            visits.Add(knots[size - 1]);
         }
 
         return visits.Count;
-    }
-
-    public static void Print(params V[] knots) {
-        for (int y = 4; y >= 0; y--) {
-            for (int x = 0; x < 6; x++) {
-                var i = Array.FindIndex(knots, knot => knot.X == x && knot.Y == y);
-                Console.Write(i >= 0 ? i.ToString() : ".");
-            }
-            Console.WriteLine();
-        }
     }
 }
 
