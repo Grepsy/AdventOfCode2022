@@ -1,2 +1,2 @@
-﻿Day6.Run1().Dump();
-Day6.Run2().Dump();
+﻿Day10.Run1().Log();
+Day10.Run2().Log();

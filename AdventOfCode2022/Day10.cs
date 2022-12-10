@@ -4,58 +4,47 @@ namespace AdventOfCode2022;
 
 public static class Day10 {
     public static object Run1() {
-        var ci = 1;
-        var x = 1;
-        var signal = 0;
+        int x = 1, signal = 0;
+        var noop = () => { };
 
-        var table = new Dictionary<string, (int cycles, Action<int[]>)> {
-            { "noop", (1, _ => { } )},
-            { "addx", (2, args => x += args[0]) }
-        };
+        var program =
+            (from line in File.ReadAllLines("day10.txt").Select(x => x.Split(' '))
+             from cycle in line switch {
+                 ["addx", var y] => new[] { noop, () => x += int.Parse(y) },
+                 _ => new[] { noop }
+             }
+             select cycle).ToArray();
 
-        var program = File.ReadAllLines("day10.txt").Select(x => x.Split(' '));
-
-        foreach (var line in program) {
-            var (cycles, inst) = table[line[0]];
-            while (cycles-- > 0) {
-                if ((ci + 20) % 40 == 0) {
-                    signal += ci * x;
-                }
-
-                ci++;
+        for (var ci = 1; ci < program.Length; ci++) {
+            if ((ci + 20) % 40 == 0) {
+                signal += ci * x;
             }
 
-            inst(line[1..].Select(int.Parse).ToArray());
+            program[ci - 1]();
         }
 
         return signal;
     }
 
-    public static object Run2() { // 2449
-        var ci = 1;
+    public static object Run2() {
         var x = 1;
         var crt = new bool[240];
+        var noop = () => { };
 
-        var table = new Dictionary<string, (int cycles, Action<int[]>)> {
-            { "noop", (1, _ => { } )},
-            { "addx", (2, args => x += args[0]) }
-        };
+        var program =
+            (from line in File.ReadAllLines("day10.txt").Select(x => x.Split(' '))
+             from cycle in line switch {
+                 ["addx", var y] => new[] { noop, () => x += int.Parse(y) },
+                 _ => new[] { noop }
+             }
+             select cycle).ToArray();
 
-        var program = File.ReadAllLines("day10.txt").Select(x => x.Split(' '));
-
-        foreach (var line in program) {
-            var (cycles, inst) = table[line[0]];
-            while (cycles-- > 0) {
-                var lp = (ci - 1) % 40;
-                crt[ci - 1] = x >= lp - 1 && x <= lp + 1;
-                ci++;
-            }
-
-            inst(line[1..].Select(int.Parse).ToArray());
+        for (var ci = 0; ci < program.Length; ci++) {
+            var lp = ci % 40;
+            crt[ci] = x >= lp - 1 && x <= lp + 1;
+            program[ci]();
         }
 
-        crt.Batch(40).Select(l => new string(l.Select(x => x ? '#' : '.').ToArray())).ForEach(x => Console.WriteLine(x));
-
-        return 0;
+        return string.Join("\n", crt.Batch(40).Select(l => new string(l.Select(x => x ? '#' : '.').ToArray())));
     }
 }
