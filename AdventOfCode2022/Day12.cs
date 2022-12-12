@@ -53,11 +53,9 @@ public static class Day12 {
 public class Grid<T> : IEnumerable<Grid<T>> {
     public readonly Vec Pos;
     public readonly T[][] Items;
-
     public int LengthY => Items.Length;
     public int LengthX => Items[0].Length;
     public bool InRange => Pos.X >= 0 && Pos.X < LengthX && Pos.Y >= 0 && Pos.Y < LengthY;
-
     public T? Value {
         get => InRange ? Items[Pos.Y][Pos.X] : default;
         set { if (InRange && value != null) { Items[Pos.Y][Pos.X] = value; } }
@@ -95,7 +93,7 @@ public class Grid<T> : IEnumerable<Grid<T>> {
             }
         }
 
-        return new Grid<T>(array);
+        return new Grid<T>(array, (0, 0));
     }
 }
 
