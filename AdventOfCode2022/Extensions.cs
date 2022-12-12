@@ -3,8 +3,8 @@
 namespace AdventOfCode2022;
 
 public static class Extensions {
-    public static T Log<T>(this T obj, string prefix = "") {
-        Console.WriteLine($"{prefix} {obj}");
+    public static T Log<T>(this T obj) {
+        Console.WriteLine(obj);
         return obj;
     }
 
