@@ -20,6 +20,9 @@ public static class Extensions {
         return obj;
     }
 
+    public static TResult Apply<T, TResult>(this IEnumerable<T> args, Func<T, TResult> function) => function(args.First());
+    public static TResult Apply<T, TResult>(this IEnumerable<T> args, Func<T, T, TResult> function) => function(args.ElementAt(0), args.ElementAt(1));
+
     public static void Deconstruct<T>(this T[] list, out T a) {
         a = list[0];
     }
