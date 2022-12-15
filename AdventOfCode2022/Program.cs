@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
 var sw = Stopwatch.StartNew();
-Day14.Run1().Log();
-Day14.Run2().Log();
-$"{sw.ElapsedMilliseconds} ms".Log();
+Day15.Run1().Log("Step 1: ");
+Day15.Run2().Log("Step 2: ");
+$"Duration: {sw.ElapsedMilliseconds} ms".Log();
