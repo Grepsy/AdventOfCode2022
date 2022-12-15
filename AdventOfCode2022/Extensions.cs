@@ -1,11 +1,17 @@
 ﻿using System.Text.Json;
+using MoreLinq;
 
 namespace AdventOfCode2022;
 
-public static class Extensions {
-    public static T Log<T>(this T obj) {
-        Console.WriteLine(obj);
+public static class LogExtensions {
+    public static T Log<T>(this T obj, string prefix = "") {
+        Console.WriteLine(prefix + obj);
         return obj;
+    }
+
+    public static IEnumerable<T> Log<T>(this IEnumerable<T> list) {
+        list.ForEach(x => Log(x));
+        return list;
     }
 
     public static T Dump<T>(this T obj) {
@@ -19,7 +25,22 @@ public static class Extensions {
         Console.WriteLine(text);
         return obj;
     }
+}
 
+
+public static class FunctionalExtensions {
+    public static Func<T, bool> Not<T>(Func<T, bool> func) => (arg) => !func(arg);
+
+    public static IEnumerable<T> LoopWhile<T>(this T obj, Func<T, T> transform, Func<T, bool> predicate) {
+        var result = transform(obj);
+        while (predicate(result)) {
+            yield return result;
+            result = transform(result);
+        }
+    }
+}
+
+public static class EnumerableExtensions {
     public static TResult Apply<T, TResult>(this IEnumerable<T> args, Func<T, TResult> function) => function(args.First());
     public static TResult Apply<T, TResult>(this IEnumerable<T> args, Func<T, T, TResult> function) => function(args.ElementAt(0), args.ElementAt(1));
 

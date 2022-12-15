@@ -8,6 +8,8 @@ public readonly record struct Vec(int X, int Y) {
     [JsonIgnore] public int Length => Math.Abs(X) + Math.Abs(Y);
     [JsonIgnore] public Vec Norm => Length == 0 ? Zero : this / Length;
 
+    public int Distance(in Vec other) => (other - this).Length;
+
     public static IEnumerable<Vec> Lerp(Vec from, Vec to) {
         var v = to - from;
         return Enumerable.Range(0, v.Length).Select(x => from + v.Norm * x);
@@ -19,10 +21,10 @@ public readonly record struct Vec(int X, int Y) {
     public static Vec Create(IEnumerable<int> xy) => new(xy.ElementAt(0), xy.ElementAt(1));
 
     public static implicit operator Vec((int x, int y) tuple) => new(tuple.x, tuple.y);
-    public static Vec operator -(Vec left, Vec right) => new(left.X - right.X, left.Y - right.Y);
-    public static Vec operator +(Vec left, Vec right) => new(left.X + right.X, left.Y + right.Y);
-    public static Vec operator *(Vec left, Vec right) => new(left.X * right.X, left.Y * right.Y);
-    public static Vec operator /(Vec left, Vec right) => new(left.X / right.X, left.Y / right.Y);
-    public static Vec operator *(Vec left, int scalar) => new(left.X * scalar, left.Y * scalar);
-    public static Vec operator /(Vec left, int scalar) => new(left.X / scalar, left.Y / scalar);
+    public static Vec operator -(in Vec left, in Vec right) => new(left.X - right.X, left.Y - right.Y);
+    public static Vec operator +(in Vec left, in Vec right) => new(left.X + right.X, left.Y + right.Y);
+    public static Vec operator *(in Vec left, in Vec right) => new(left.X * right.X, left.Y * right.Y);
+    public static Vec operator /(in Vec left, in Vec right) => new(left.X / right.X, left.Y / right.Y);
+    public static Vec operator *(in Vec left, int scalar) => new(left.X * scalar, left.Y * scalar);
+    public static Vec operator /(in Vec left, int scalar) => new(left.X / scalar, left.Y / scalar);
 }

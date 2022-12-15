@@ -1,6 +1,6 @@
 ﻿namespace AdventOfCode2022;
 
-public static class Day9 {
+public static class Day09 {
     public static object Run1() => Run2(size: 2); //6236
 
     public static object Run2(int size = 10) { // 2449

@@ -4,7 +4,7 @@ using static System.Linq.Enumerable;
 
 namespace AdventOfCode2022;
 
-public static class Day5 {
+public static class Day05 {
     public static object Run1() { // TLNGFGMFN
         var sections = File.ReadAllText("day5.txt").Split("\n\n").ToList();
         var stacksText = sections[0].Split("\n").ToList();

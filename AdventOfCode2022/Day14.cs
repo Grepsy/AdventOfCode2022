@@ -13,11 +13,13 @@ public static class Day14 {
     public static int Run1() {
         var blocks = ParseRocks();
         int abyss = 1000, rockCount = blocks.Count;
+        var isFree = Not<Vec>(blocks.Contains);
         Vec grain, move;
-
+        
         do {
             grain = Spawn;
-            do grain += move = Moves.First(x => !blocks.Contains(grain + x));
+
+            do grain += move = Moves.Select(x => x + grain).First(isFree);
             while (move != Vec.Zero && grain.Y != abyss);
             blocks.Add(grain);
         } while (grain.Y != abyss);

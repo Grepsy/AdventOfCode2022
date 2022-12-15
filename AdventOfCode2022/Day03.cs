@@ -2,7 +2,7 @@
 
 namespace AdventOfCode2022;
 
-public static class Day3 {
+public static class Day03 {
     public static object Run1() => // 7581
         (from backpack in File.ReadLines("day3.txt")
          let halfLength = backpack.Length / 2

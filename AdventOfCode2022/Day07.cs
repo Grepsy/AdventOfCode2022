@@ -1,6 +1,6 @@
 ﻿namespace AdventOfCode2022;
 
-public static class Day7 {
+public static class Day07 {
     public static object Run1() { // 1232307
         var rootNode = CalcTree();
         return rootNode.Descendents.Where(x => x.TotalSize <= 100000).Sum(x => x.TotalSize);

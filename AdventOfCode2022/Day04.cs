@@ -1,6 +1,6 @@
 ﻿namespace AdventOfCode2022;
 
-public static class Day4 {
+public static class Day04 {
     public static object Run1() => // 528
         (from line in File.ReadLines("day4.txt")
          let sections = line.Split(',').Select(s => s.Split("-").Select(int.Parse).ToList()).ToList()

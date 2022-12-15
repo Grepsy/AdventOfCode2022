@@ -5,13 +5,21 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
     </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+      <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+      <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+    </PropertyGroup>
 
     <ItemGroup>
-      <Using Include="AdventOfCode2022" />
+        <Using Include="AdventOfCode2022" />
+        <Using Static="true" Include="AdventOfCode2022.FunctionalExtensions" />
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="morelinq" Version="3.3.2" />
+        <PackageReference Include="morelinq" Version="3.3.2" />
+        <!--<PackageReference Include="LanguageExt.Core" Version="4.4.0" />-->
     </ItemGroup>
 
     <ItemGroup>

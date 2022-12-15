@@ -1,6 +1,6 @@
 ﻿namespace AdventOfCode2022;
 
-public static class Day2 {
+public static class Day02 {
     public static int Run1() => // 13484
         (from line in File.ReadLines("day2.txt")
          let round = (p2: (char)(line[2] - 23), p1: line[0])

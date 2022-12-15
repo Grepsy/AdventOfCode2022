@@ -4,7 +4,7 @@ using static MoreLinq.Extensions.TransposeExtension;
 
 namespace AdventOfCode2022;
 
-public static class Day8 {
+public static class Day08 {
     public static object Run1() { // 1779
         var grid = File.ReadAllText("day8.txt").Split("\n").Select(x => x.ToCharArray().Select(x => x - '0').ToArray()).ToArray();
         var grid2 = grid.Transpose().Select(x => x.ToArray()).ToArray();
