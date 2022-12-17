@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using System.Runtime.CompilerServices;
+using System.Text.Json;
 using MoreLinq;
 
 namespace AdventOfCode2022;
@@ -14,14 +15,19 @@ public static class LogExtensions {
         return list;
     }
 
-    public static T Dump<T>(this T obj) {
-        var text = JsonSerializer.Serialize(obj, typeof(T), new JsonSerializerOptions { WriteIndented = true });
-        Console.WriteLine(text);
+    public static T Dump<T>(this T obj, bool indent = false) {
+        if (obj is ITuple) {
+            Console.WriteLine(obj);
+        }
+        else {
+            var text = JsonSerializer.Serialize(obj, typeof(T), new JsonSerializerOptions { WriteIndented = indent, IncludeFields = true });
+            Console.WriteLine(text);
+        }
         return obj;
     }
 
-    public static IEnumerable<T> Dump<T>(this IEnumerable<T> obj, int size = 32) {
-        var text = JsonSerializer.Serialize(obj.Take(size), typeof(IEnumerable<T>), new JsonSerializerOptions { WriteIndented = true });
+    public static IEnumerable<T> Dump<T>(this IEnumerable<T> obj, bool indent = false, int size = 32) {
+        var text = JsonSerializer.Serialize(obj.Take(size), typeof(IEnumerable<T>), new JsonSerializerOptions { WriteIndented = indent, IncludeFields = true });
         Console.WriteLine(text);
         return obj;
     }
